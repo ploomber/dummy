@@ -89,3 +89,20 @@ jobs:
         run: |
           TAG=$(git describe --abbrev=0)
           echo yes | pkgmt release $TAG --production
+
+  create-and-merge-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create and merge PR
+        env:
+          BRANCH_NAME : ${{ github.head_ref || github.ref_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TITLE: "release-pr"
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+          echo "Creating PR \"$PR_TITLE\" for branch $BRANCH_NAME"
+          gh pr create --title "$PR_TITLE" --body "This is an automated PR to update blog posts"
+          gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"    
