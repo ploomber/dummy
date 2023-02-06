@@ -31,7 +31,11 @@ jobs:
 
       - name: Configure git
         run: |
+<<<<<<< HEAD
+          git config user.email "github-actions@ploomber.io"
+=======
           git config user.email "github-actions@github.com"
+>>>>>>> 741c41257d9988ea0f0a75ec11ef00bc2b1ab46c
           git config user.name "github-actions"
 
       - name: Create a new branch and bump up tag version
@@ -78,26 +82,3 @@ jobs:
         run: |
           gh pr review --approve
 
-      - name: Merge PR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr merge --auto --delete-branch --squash $BRANCH_NAME
-
-      - name: Push TAG and release to PyPI
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TWINE_USERNAME: "__token__"
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          TAG=${{ env.TAG }}
-          git push origin $TAG
-
-      - name: Release to PyPI
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TWINE_USERNAME: "__token__"
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          TAG=${{ env.TAG }}
-          echo yes | pkgmt release $TAG --production
