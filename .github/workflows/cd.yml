@@ -31,11 +31,7 @@ jobs:
 
       - name: Configure git
         run: |
-<<<<<<< HEAD
           git config user.email "github-actions@ploomber.io"
-=======
-          git config user.email "github-actions@github.com"
->>>>>>> 741c41257d9988ea0f0a75ec11ef00bc2b1ab46c
           git config user.name "github-actions"
 
       - name: Create a new branch and bump up tag version
