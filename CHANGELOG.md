@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 0.1.16dev
+## 0.1.16 (2023-02-08)
 
 - [Feature] new feature
+
 ## 0.1.15
 
 - [Feature] new feature
@@ -10,7 +11,6 @@
 ## 0.1.14
 
 - [Feature] new feature
-
 
 ## 0.1.13 (2023-02-08)
 
