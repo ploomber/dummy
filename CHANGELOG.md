@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.21dev
+## 0.1.21 (2023-02-08)
 
 - [Feature] new feature
 
