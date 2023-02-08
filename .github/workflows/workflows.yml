@@ -175,7 +175,7 @@ jobs:
           TWINE_USERNAME: "__token__"
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          TAG=$(git describe --abbrev=0)
+          TAG=0.1.21
           echo yes | pkgmt release $TAG --production
 
       - name: Merge release PR to main 
