@@ -12,3 +12,13 @@ jobs:
 
           git fetch origin $GITHUB_BASE_REF:$GITHUB_BASE_REF --depth 1
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'hello!'
+            })
