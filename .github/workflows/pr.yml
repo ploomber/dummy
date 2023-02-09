@@ -8,11 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check PR
+        id: changelog
         run: |
 
           git fetch origin $GITHUB_BASE_REF:$GITHUB_BASE_REF --depth 1
-          git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
+          git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF | grep CHANGELOG.md
       - uses: actions/github-script@v5
+        if: steps.changelog.outcome == 'failure'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -20,5 +22,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'hello!'
+              body: 'changelog unmodified!'
             })
