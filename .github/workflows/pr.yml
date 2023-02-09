@@ -11,4 +11,5 @@ jobs:
         run: |
 
           git fetch origin
+          git pull $GITHUB_BASE_REF
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
