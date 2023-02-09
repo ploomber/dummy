@@ -3,12 +3,12 @@ name: check-pr
 on: [pull_request]
 
 jobs:
-  broken-links:
+  check-status:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Check PR
         run: |
 
-          git fetch origin $GITHUB_BASE_REF
+          git fetch origin
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
