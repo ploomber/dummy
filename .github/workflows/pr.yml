@@ -6,7 +6,7 @@ jobs:
   broken-links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -18,4 +18,5 @@ jobs:
           pip install pkgmt
       - name: Check PR
         run: |
+          git checkout $GITHUB_BASE_REF
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
