@@ -13,6 +13,7 @@ jobs:
         run: |
 
           git fetch origin $GITHUB_BASE_REF:$GITHUB_BASE_REF --depth 1
+          # https://stackoverflow.com/a/65656616/709975
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF | grep CHANGELOG.md
       - uses: actions/github-script@v5
         if: steps.changelog.outcome == 'failure'
