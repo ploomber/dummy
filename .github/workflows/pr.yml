@@ -10,6 +10,5 @@ jobs:
       - name: Check PR
         run: |
 
-          git fetch origin
-          git pull $GITHUB_BASE_REF
+          git fetch origin $GITHUB_BASE_REF:$GITHUB_BASE_REF --depth 1
           git --no-pager diff --name-only --diff-filter=ACMRT $GITHUB_BASE_REF
