@@ -3,14 +3,14 @@ on:
   issue_comment:
     types: [created]
 jobs:
- job01:
+ add-release-commit:
     # probably only open PRs?
    if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
-        ref: $ {{ github.ref }}
+        ref: ${{ github.ref }}
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
