@@ -1,17 +1,25 @@
 name: pr-comment
 on:
   issue_comment:
-    types: [created, edited, deleted]
+    types: [created]
 jobs:
  job01:
+    # probably only open PRs?
    if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
    runs-on: ubuntu-latest
    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
     - name: say hello
-      if: contains(github.event.comment.body, '/support')   # check the comment if it contains the keywords
+      if: contains(github.event.comment.body, '/release')   # check the comment if it contains the keywords
       run: |
-       echo say hello
-    - name: test
-      if: contains(github.event.comment.body, '/test')  # check the comment if it contains the keywords
-      run: |
-       echo test
+        python -m pip install --upgrade pip pkgmt
+        pip install pkgmt
+
+        git config user.email "github-actions@ploomber.io"
+        git config user.name "github-actions"
+
+        pkgmt version --yes --no-tag --target stable
