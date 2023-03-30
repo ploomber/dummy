@@ -21,8 +21,9 @@ jobs:
     # TODO: set master/main depending on which is the default branch
     - name: Check
       run: |
-        MAIN_BRANCH=main
-        git pull origin $MAIN_BRANCH
+        # MAIN_BRANCH=main
+        # git pull origin $MAIN_BRANCH
+        git fetch --depth=1 origin main
 
         MODIFIED=$(git diff --exit-code main CHANGELOG.md)
 
