@@ -10,6 +10,8 @@ jobs:
    steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
@@ -19,7 +21,6 @@ jobs:
     # TODO: set master/main depending on which is the default branch
     - name: Check
       run: |
-        git pull origin main
         MODIFIED=$(git diff --exit-code main CHANGELOG.md)
 
         if [[ -n "$MODIFIED" ]]
