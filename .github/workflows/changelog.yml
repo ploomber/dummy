@@ -28,7 +28,8 @@ jobs:
 
         CHANGELOG_DIFF=$(git diff main CHANGELOG.md)
 
-        if [[ -z CHANGELOG_DIFF ]]
+        # https://stackoverflow.com/a/47498710/709975
+        if [[ -z `echo $CHANGELOG_DIFF` ]]
         then
             echo "CHANGELOG.md has **not** been edited..."
             echo "CHANGELOG_EDITED=0" >> $GITHUB_OUTPUT
