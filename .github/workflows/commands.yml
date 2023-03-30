@@ -13,6 +13,15 @@ jobs:
    runs-on: ubuntu-latest
 
    steps:
+    - name: Set latest commit status as pending
+      uses: myrotvorets/set-commit-status-action@master
+      with:
+        sha: ${{ steps.comment-branch.outputs.head_sha }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        status: pending
+
+
+
     - uses: actions/checkout@v3
 
     # https://github.com/actions/checkout/issues/331#issuecomment-925405415
@@ -39,6 +48,14 @@ jobs:
         git add --all
         git commit -m 'formattting'
         git push
+
+    - name: Set latest commit status as ${{ job.status }}
+      uses: myrotvorets/set-commit-status-action@master
+      if: always()
+      with:
+        sha: ${{ steps.comment-branch.outputs.head_sha }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        status: ${{ job.status }}
 
     - name: Add comment to PR
       uses: actions/github-script@v6
