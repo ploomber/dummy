@@ -1,4 +1,8 @@
-# tutorial: https://dev.to/zirkelc/trigger-github-workflow-for-comment-on-pull-request-45l2
+# Workflow that prints a message to the PR if the CHANGELOG.md hasn't been modified
+# if it has been modified, it does nothing.
+# IMPORTANT: Update BRANCH_NAME in line 27 depending on the name of the default branch
+
+# Based on: https://dev.to/zirkelc/trigger-github-workflow-for-comment-on-pull-request-45l2
 name: changelog-edited
 
 on: pull_request
@@ -16,15 +20,13 @@ jobs:
       with:
         python-version: '3.10'
 
-    # TODO: set master/main depending on which is the default branch
+    # TODO: set BRANCH_NAME depending on which is the default branch
     - name: Check CHANGELOG.md
       id: check
       run: |
-        # MAIN_BRANCH=main
-        # git pull origin $MAIN_BRANCH
-        git fetch --depth=1 origin main:main
-
-        CHANGELOG_DIFF=$(git diff main CHANGELOG.md)
+        BRANCH_NAME=main
+        git fetch --depth=1 origin $BRANCH_NAME:$BRANCH_NAME
+        CHANGELOG_DIFF=$(git diff "$BRANCH_NAME" CHANGELOG.md)
 
         # https://stackoverflow.com/a/47498710/709975
         if [[ -z `echo $CHANGELOG_DIFF` ]]
