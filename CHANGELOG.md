@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 0.1.26dev
+
 ## 0.1.25 (2023-03-30)
 
 - [Feature] new feature
