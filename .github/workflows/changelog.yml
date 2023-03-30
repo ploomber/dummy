@@ -30,10 +30,8 @@ jobs:
         if [[ -n "$MODIFIED" ]]
         then
             echo "CHANGELOG.md has been edited...""
-            exit 0
         else
             echo "CHANGELOG.md has **not** been edited...""
-            exit 1
         fi
 
     - name: Add comment to PR
