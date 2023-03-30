@@ -19,19 +19,22 @@ jobs:
         python-version: '3.10'
 
     # TODO: set master/main depending on which is the default branch
-    - name: Check
+    - name: check
       run: |
         # MAIN_BRANCH=main
         # git pull origin $MAIN_BRANCH
         git fetch --depth=1 origin main:main
 
-        if [[ -z $(git diff main CHANGELOG.md) ]]
+        CHANGELOG_DIFF=$(git diff main CHANGELOG.md)
+        echo "CHANGELOG_DIFF=$CHANGELOG_DIFF" >> $GITHUB_OUTPUT
+
+        if [[ -z CHANGELOG_DIFF ]]
         then
             echo "CHANGELOG.md has **not** been edited..."
-            exit 1
+            echo "CHANGELOG_EDITED=0" >> $GITHUB_OUTPUT
         else
             echo "CHANGELOG.md has been edited..."
-            exit 0
+            echo "CHANGELOG_EDITED=1" >> $GITHUB_OUTPUT
         fi
 
     - name: Add comment to PR
@@ -39,6 +42,7 @@ jobs:
       if: always()
       with:
         script: |
+          const diff = '${{ steps.check.outputs.CHANGELOG_DIFF }}"'
           const name = '${{ github.workflow   }}';
           const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
           const success = '${{ job.status }}' === 'success';
@@ -48,5 +52,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: body
+            body: body + '\n' + diff
           })
