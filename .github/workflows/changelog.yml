@@ -26,7 +26,7 @@ jobs:
         git fetch --depth=1 origin main:main
 
         CHANGELOG_DIFF=$(git diff main CHANGELOG.md)
-        echo "CHANGELOG_DIFF=$CHANGELOG_DIFF" >> $GITHUB_OUTPUT
+        echo "CHANGELOG_DIFF=somediff" >> $GITHUB_OUTPUT
 
         if [[ -z CHANGELOG_DIFF ]]
         then
