@@ -22,4 +22,4 @@ jobs:
           python -m pip install --upgrade pip pkgmt
           TAG=$(git describe --abbrev=0)
           echo "tag is $TAG"
-          pkgmt release $TAG --production
+          pkgmt release $TAG --production --yes
