@@ -25,11 +25,7 @@ jobs:
         # git pull origin $MAIN_BRANCH
         git fetch --depth=1 origin main:main
 
-        echo "Checking..."
-        MODIFIED=$(git diff main CHANGELOG.md)
-        echo "Checked: $MODIFIED"
-
-        if [[ -n "$MODIFIED" ]]
+        if [[ -z $(git diff main CHANGELOG.md) ]]
         then
             echo "CHANGELOG.md has been edited...""
         else
