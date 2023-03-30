@@ -50,14 +50,15 @@ jobs:
         git config user.email 'github-actions[bot]@users.noreply.github.com'
 
         pkgmt format
-        git add --all
 
-        # this will exit 1 if there are files that were modified
-        if [[ $(git diff --quiet --exit-code --staged) -eq 1 ]]; then
+        if [[ -z $(git status -s) ]]
+        then
+          echo "No changes to commit..."
+        else
+          echo "Committing changes..."
+          git add --all
           git commit -m 'formattting'
           git push
-        else
-          echo "No changes to commit..."
         fi
 
     - name: Set latest commit status as ${{ job.status }}
