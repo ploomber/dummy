@@ -7,7 +7,7 @@ jobs:
    # probably only open PRs?
    # check if the comments come from pull request, exclude those from issue.
    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/format') 
-    runs-on: ubuntu-latest
+   runs-on: ubuntu-latest
 
    steps:
     - uses: actions/checkout@v3
