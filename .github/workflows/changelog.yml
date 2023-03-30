@@ -50,14 +50,20 @@ jobs:
             const name = '${{ github.workflow   }}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
 
+            const body = `
+            Looks like your PR didn't edit the CHANGELOG.md file. This is fine in some
+            cases, however, ensure that you're following the
+            [CHANGELOG guidelines](https://ploomber-contributing.readthedocs.io/en/latest/contributing/coding.html#changelog)
+            `
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Changelog hasn't been edited!"
+              body: body
             })
           } else {
-            console.log("CHANGELOG has ben edited...")
+            console.log("CHANGELOG has been edited...")
           }
 
 
