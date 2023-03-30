@@ -23,13 +23,18 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         status: pending
 
-    - uses: actions/checkout@v3
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ steps.comment-branch.outputs.head_ref }}
 
-    # https://github.com/actions/checkout/issues/331#issuecomment-925405415
-    - name: Checkout Pull Request
-      run: hub pr checkout ${{ github.event.issue.number }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - uses: actions/checkout@v3
+
+    # # https://github.com/actions/checkout/issues/331#issuecomment-925405415
+    # - name: Checkout Pull Request
+    #   run: hub pr checkout ${{ github.event.issue.number }}
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
