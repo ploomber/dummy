@@ -50,6 +50,12 @@ jobs:
         git config user.email 'github-actions[bot]@users.noreply.github.com'
 
         pkgmt format
+        # this will exit 1 if there are files that were modified
+        git diff --quiet --exit-code
+
+    - name: Commit and push
+      if: ${{ failure() || steps.format.exitCode == 1 }}
+      run: | 
         git add --all
         git commit -m 'formattting'
         git push
