@@ -32,6 +32,7 @@ jobs:
         git config user.email "github-actions@ploomber.io"
         git config user.name "github-actions"
         pkgmt format
+        git add --all
         git commit -m 'formattting'
         git push
 
