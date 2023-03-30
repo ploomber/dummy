@@ -50,15 +50,18 @@ jobs:
         git config user.email 'github-actions[bot]@users.noreply.github.com'
 
         pkgmt format
-        # this will exit 1 if there are files that were modified
-        git diff --quiet --exit-code
 
-    - name: Commit and push
-      if: ${{ failure() || steps.format.exitCode == 1 }}
-      run: | 
-        git add --all
-        git commit -m 'formattting'
-        git push
+        # this will exit 1 if there are files that were modified
+        NEEDS_COMMIT=$(git diff --quiet --exit-code)
+
+        if [ "$NEEDS_COMMIT" -eq 1 ]
+        then
+          git add --all
+          git commit -m 'formattting'
+          git push
+        else
+          echo "No changes to commit..."
+        fi
 
     - name: Set latest commit status as ${{ job.status }}
       uses: myrotvorets/set-commit-status-action@master
