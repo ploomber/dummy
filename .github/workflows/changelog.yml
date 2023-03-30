@@ -49,8 +49,7 @@ jobs:
 
           if (!changelog_edited){
             const body = `
-            Looks like your PR didn't edit the CHANGELOG.md file. This is fine in some
-            cases, however, ensure that you're following the
+            Your PR didn't edit the CHANGELOG.md file. This is ok in some cases, however, ensure that you're following the
             [CHANGELOG guidelines](https://ploomber-contributing.readthedocs.io/en/latest/contributing/coding.html#changelog)
             `
 
