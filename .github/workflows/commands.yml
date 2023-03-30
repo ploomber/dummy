@@ -1,7 +1,9 @@
 name: bot-format
+
 on:
   issue_comment:
     types: [created]
+
 jobs:
  pkgmt-format:
    # probably only open PRs?
