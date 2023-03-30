@@ -16,11 +16,8 @@ jobs:
     - name: Set latest commit status as pending
       uses: myrotvorets/set-commit-status-action@master
       with:
-        sha: ${{ steps.comment-branch.outputs.head_sha }}
         token: ${{ secrets.GITHUB_TOKEN }}
         status: pending
-
-
 
     - uses: actions/checkout@v3
 
@@ -38,7 +35,6 @@ jobs:
     - name: format
       run: |
         python -m pip install --upgrade pip pkgmt
-        pip install pkgmt[check]
 
         # https://github.com/actions/checkout/discussions/479#discussioncomment-625461
         git config user.name 'github-actions[bot]'
@@ -53,7 +49,6 @@ jobs:
       uses: myrotvorets/set-commit-status-action@master
       if: always()
       with:
-        sha: ${{ steps.comment-branch.outputs.head_sha }}
         token: ${{ secrets.GITHUB_TOKEN }}
         status: ${{ job.status }}
 
