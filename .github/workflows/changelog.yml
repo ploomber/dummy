@@ -44,7 +44,7 @@ jobs:
         script: |
           const changelog_edited = '${{ steps.check.outputs.CHANGELOG_EDITED }}' == '1'
 
-          if not (changelog_edited){
+          if (!changelog_edited){
             const diff = '${{ steps.check.outputs.CHANGELOG_DIFF }}'
             const name = '${{ github.workflow   }}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
