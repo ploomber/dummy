@@ -22,6 +22,9 @@ jobs:
           python -m pip install pkgmt twine wheel --upgrade
 
       - name: Upload
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
           TAG=$(git describe --abbrev=0)
           echo "tag is $TAG"
