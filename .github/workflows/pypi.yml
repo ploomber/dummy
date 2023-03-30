@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install pkgmt wheel --upgrade
+          python -m pip install pkgmt twine wheel --upgrade
 
       - name: Upload
         run: |
