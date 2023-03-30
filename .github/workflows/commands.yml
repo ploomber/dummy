@@ -50,12 +50,10 @@ jobs:
         git config user.email 'github-actions[bot]@users.noreply.github.com'
 
         pkgmt format
+        git add --all
 
         # this will exit 1 if there are files that were modified
-        git add --all
-        NEEDS_COMMIT=$(git diff --quiet --exit-code --staged)
-
-        if [[ "$NEEDS_COMMIT" -eq "1" ]]; then
+        if [[ "$(git diff --quiet --exit-code --staged)" -eq "1" ]]; then
           git commit -m 'formattting'
           git push
         else
