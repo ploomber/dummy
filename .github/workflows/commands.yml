@@ -53,7 +53,7 @@ jobs:
         git add --all
 
         # this will exit 1 if there are files that were modified
-        if [[ "$(git diff --quiet --exit-code --staged)" -eq "1" ]]; then
+        if [[ $(git diff --quiet --exit-code --staged) -eq 1 ]]; then
           git commit -m 'formattting'
           git push
         else
