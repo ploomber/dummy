@@ -25,7 +25,7 @@ jobs:
         # git pull origin $MAIN_BRANCH
         git fetch --depth=1 origin main:main
 
-        MODIFIED=$(git diff --exit-code origin main CHANGELOG.md)
+        MODIFIED=$(git diff --exit-code main CHANGELOG.md)
 
         if [[ -n "$MODIFIED" ]]
         then
