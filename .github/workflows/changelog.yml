@@ -27,7 +27,6 @@ jobs:
         git fetch --depth=1 origin main:main
 
         CHANGELOG_DIFF=$(git diff main CHANGELOG.md)
-        echo "CHANGELOG_DIFF=somediff" >> $GITHUB_OUTPUT
 
         if [[ -z CHANGELOG_DIFF ]]
         then
@@ -35,6 +34,8 @@ jobs:
             echo "CHANGELOG_EDITED=0" >> $GITHUB_OUTPUT
         else
             echo "CHANGELOG.md has been edited..."
+            echo "CHANGELOG.md diff:"
+            echo $CHANGELOG_DIFF
             echo "CHANGELOG_EDITED=1" >> $GITHUB_OUTPUT
         fi
 
@@ -46,10 +47,6 @@ jobs:
           const changelog_edited = '${{ steps.check.outputs.CHANGELOG_EDITED }}' == '1'
 
           if (!changelog_edited){
-            const diff = '${{ steps.check.outputs.CHANGELOG_DIFF }}'
-            const name = '${{ github.workflow   }}';
-            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
-
             const body = `
             Looks like your PR didn't edit the CHANGELOG.md file. This is fine in some
             cases, however, ensure that you're following the
