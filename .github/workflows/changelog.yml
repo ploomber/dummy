@@ -1,0 +1,47 @@
+# tutorial: https://dev.to/zirkelc/trigger-github-workflow-for-comment-on-pull-request-45l2
+name: changelog-edited
+
+on: pull_request
+
+jobs:
+ changelog-edited:
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Check
+      run: |
+        MODIFIED=$(git diff --exit-code master CHANGELOG.md)
+
+        if [[ -n "$MODIFIED" ]]
+        then
+            echo "CHANGELOG.md has been edited...""
+            exit 0
+        else
+            echo "CHANGELOG.md has **not** been edited...""
+            exit 1
+        fi
+
+    - name: Add comment to PR
+      uses: actions/github-script@v6
+      if: always()
+      with:
+        script: |
+          const name = '${{ github.workflow   }}';
+          const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+          const success = '${{ job.status }}' === 'success';
+          const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
+
+          await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          })
