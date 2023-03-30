@@ -55,7 +55,7 @@ jobs:
         git add --all
         NEEDS_COMMIT=$(git diff --quiet --exit-code --staged)
 
-        if [ $NEEDS_COMMIT -eq 1 ]
+        if [ "$NEEDS_COMMIT" -eq "1" ]
         then
           git commit -m 'formattting'
           git push
