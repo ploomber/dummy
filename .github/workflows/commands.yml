@@ -29,8 +29,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip pkgmt
         pip install pkgmt[check]
-        git config user.email "github-actions@ploomber.io"
-        git config user.name "github-actions"
+
+        # https://github.com/actions/checkout/discussions/479#discussioncomment-625461
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
+
         pkgmt format
         git add --all
         git commit -m 'formattting'
