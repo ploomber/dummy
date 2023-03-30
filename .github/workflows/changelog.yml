@@ -19,7 +19,8 @@ jobs:
         python-version: '3.10'
 
     # TODO: set master/main depending on which is the default branch
-    - name: check
+    - name: Check CHANGELOG.md
+      id: check
       run: |
         # MAIN_BRANCH=main
         # git pull origin $MAIN_BRANCH
