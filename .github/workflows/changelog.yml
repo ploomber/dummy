@@ -23,7 +23,6 @@ jobs:
       run: |
         MAIN_BRANCH=main
         git pull origin $MAIN_BRANCH
-        git push --set-upstream origin $MAIN_BRANCH
 
         MODIFIED=$(git diff --exit-code main CHANGELOG.md)
 
