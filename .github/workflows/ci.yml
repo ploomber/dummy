@@ -46,7 +46,7 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-          TAG: ${{  github.ref_name }}"
+          TAG: ${{  github.ref_name }}
         run: |
           echo "tag is $TAG"
           pkgmt release $TAG --production --yes
