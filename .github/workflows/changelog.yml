@@ -27,9 +27,11 @@ jobs:
 
         if [[ -z $(git diff main CHANGELOG.md) ]]
         then
-            echo "CHANGELOG.md has been edited..."
-        else
             echo "CHANGELOG.md has **not** been edited..."
+            exit 1
+        else
+            echo "CHANGELOG.md has been edited..."
+            exit 0
         fi
 
     - name: Add comment to PR
@@ -40,7 +42,7 @@ jobs:
           const name = '${{ github.workflow   }}';
           const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
           const success = '${{ job.status }}' === 'success';
-          const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
+          const body = `${name}: ${success ? 'CHANGELOG.md edited ✅' : 'CHANGELOG.md not edited ❌'}\n${url}`;
 
           await github.rest.issues.createComment({
             issue_number: context.issue.number,
