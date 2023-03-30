@@ -25,8 +25,7 @@ jobs:
   release:
     # TODO: ADD ALL JOBS THAT MUST SUCCEED BEFORE RELEASING!
     needs: [test]
-    # TODO: switch to master if that's the default branch
-    if: github.ref_name == 'main' && startsWith(github.ref, 'refs/tags') && github.event_name != 'pull_request'
+    if: startsWith(github.ref, 'refs/tags') && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
