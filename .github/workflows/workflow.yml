@@ -8,6 +8,7 @@ on: [pull_request_target]
 jobs:
  changelog-edited:
    runs-on: ubuntu-latest
+   if: ! contains(github.event.pull_request.labels.*.name, 'allow-workflows-edits')
 
    steps:
     - name: Checkout
