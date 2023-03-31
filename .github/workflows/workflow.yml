@@ -1,5 +1,6 @@
 name: workflow-edited
 
+# NOTE
 on: [pull_request_target]
 
 jobs:
@@ -9,19 +10,18 @@ jobs:
    steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
 
-    - name: Check CHANGELOG.md
+    - name: Check
       id: check
       run: |
         BRANCH_NAME=main
         git fetch --depth=1 origin $BRANCH_NAME:$BRANCH_NAME
-        git diff "$BRANCH_NAME" .github/workflows/
+        git diff --exit-code "$BRANCH_NAME" .github/workflows/
 
-
-
-        
