@@ -1,6 +1,8 @@
 name: workflow-edited
 
-# NOTE
+# NOTE: we need this as a security measure so PRs from forks cannot submit a PR and
+# modify this file. Only forks from branches in this repository will be able to
+# change this.
 on: [pull_request_target]
 
 jobs:
