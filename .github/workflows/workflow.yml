@@ -1,8 +1,8 @@
 name: workflow-edited
 
 # NOTE: we need this as a security measure so PRs from forks cannot submit a PR and
-# modify this file. Only forks from branches in this repository will be able to
-# change this.
+# modify this file. The only way for this test to pass is to add the
+# 'allow-workflows-edits' label
 on: [pull_request_target]
 
 jobs:
