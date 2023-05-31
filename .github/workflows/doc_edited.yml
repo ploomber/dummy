@@ -25,7 +25,7 @@ jobs:
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
         python -m pkgmt.modified -e doc --debug
         
-        git fetch --all
+        git fetch --depth=1 origin --all
 
         if [ $? -eq 0 ]; then
           # code to execute if the last command succeeded (exit status 0)
