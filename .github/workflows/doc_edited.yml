@@ -3,7 +3,7 @@ name: changelog-edited
 on:
   push:
     branches:
-      - '*'
+      - pkgmt_modi
 
 jobs:
  changelog-edited:
@@ -31,10 +31,10 @@ jobs:
     - name: Check doc
       id: check
       run: |
-        pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        python -m pkgmt.modified -e doc --debug
-        
         git fetch --depth=1 origin --all
+        pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
+        python -m pkgmt.modified -b origin/main -e doc --debug
+        
 
         if [ $? -eq 0 ]; then
           # code to execute if the last command succeeded (exit status 0)
