@@ -3,7 +3,7 @@ name: changelog-edited
 on:
   push:
     branches:
-      - pkgmt_modi
+      - '*'
 
 jobs:
  changelog-edited:
