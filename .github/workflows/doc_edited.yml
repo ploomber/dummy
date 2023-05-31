@@ -25,6 +25,8 @@ jobs:
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
         python -m pkgmt.modified -e doc --debug
         
+        git fetch --all
+
         if [ $? -eq 0 ]; then
           # code to execute if the last command succeeded (exit status 0)
           echo "only doc has been modified. Executing only doc build..."
