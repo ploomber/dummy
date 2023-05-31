@@ -32,10 +32,10 @@ jobs:
       id: check
       run: |
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        python -m pkgmt.modified -b origin/main -e doc --debug
+        DOC=$(python -m pkgmt.modified -b origin/main -e doc)
         
 
-        if [ $? -eq 0 ]; then
+        if [ $DOC -eq 0 ]; then
           # code to execute if the last command succeeded (exit status 0)
           echo "only doc has been modified. Executing only doc build..."
         else
