@@ -1,8 +1,9 @@
 name: changelog-edited
 
 on:
-  pull_request:
-    types: [review_requested]
+  push:
+    branches:
+      - '*'
 
 jobs:
  changelog-edited:
