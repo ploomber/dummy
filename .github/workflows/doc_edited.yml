@@ -23,7 +23,7 @@ jobs:
       id: check
       run: |
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        python -m pkgmt.modified -e doc
+        python -m pkgmt.modified -e doc --debug
         
         if [ $? -eq 0 ]; then
           # code to execute if the last command succeeded (exit status 0)
