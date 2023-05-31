@@ -31,7 +31,6 @@ jobs:
     - name: Check doc
       id: check
       run: |
-        git fetch --depth=1 origin --all
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
         python -m pkgmt.modified -b origin/main -e doc --debug
         
