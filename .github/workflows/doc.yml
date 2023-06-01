@@ -1,0 +1,44 @@
+name: changelog-edited
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+ changelog-edited:
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: git remote branches
+      run: git branch -r
+
+    - name: git local branches
+      run: git branch
+      
+
+    # TODO: set BRANCH_NAME depending on which is the default branch
+    - name: Check doc
+      id: check
+      run: |
+        pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
+        DOC=$(python -m pkgmt.modified -b origin/pkgmt_modi -e doc)
+        
+
+        if [ $DOC -eq 0 ]; then
+          # code to execute if the last command succeeded (exit status 0)
+          echo "only doc has been modified. Executing only doc build..."
+        else
+          # code to execute if the last command failed (exit status non-zero)
+          echo "Executing all tests..."
+        fi
