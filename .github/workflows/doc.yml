@@ -32,7 +32,7 @@ jobs:
       id: check
       run: |
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        DOC=$(python -m pkgmt.modified -b origin/pkgmt_modi -e doc)
+        DOC=$(python -m pkgmt.modified -b main -e doc)
         
 
         if [ $DOC -eq 0 ]; then
