@@ -1,4 +1,4 @@
-name: changelog-edited
+name: doc-edited
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
- changelog-edited:
+ doc-edited:
    runs-on: ubuntu-latest
 
    steps:
@@ -15,19 +15,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
 
-    - name: git remote branches
-      run: git branch -r
-
-    - name: git local branches
-      run: git branch
-      
-
-    # TODO: set BRANCH_NAME depending on which is the default branch
     - name: Check doc
       id: check_doc
       run: |
