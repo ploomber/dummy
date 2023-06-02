@@ -29,16 +29,18 @@ jobs:
 
     # TODO: set BRANCH_NAME depending on which is the default branch
     - name: Check doc
-      id: check
+      id: check_doc
       run: |
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        DOC=$(python -m pkgmt.modified -b origin/pkgmt_modi -e doc)
-        
-
-        if [ $DOC -eq 0 ]; then
-          # code to execute if the last command succeeded (exit status 0)
-          echo "only doc has been modified. Executing only doc build..."
-        else
-          # code to execute if the last command failed (exit status non-zero)
-          echo "Executing all tests..."
-        fi
+        python -m pkgmt.modified -b origin/pkgmt_modi -e doc
+      continue-on-error: true
+    
+    - name: Only Doc Testing
+      if: steps.check_doc.outcome == 'success'
+      run: |
+        echo "Only Doc Testing"
+    
+    - name: All Testing
+      if: steps.check_doc.outcome == 'failure'
+      run: |
+        echo "All Testing"
