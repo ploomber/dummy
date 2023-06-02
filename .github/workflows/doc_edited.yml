@@ -32,7 +32,7 @@ jobs:
       id: check_doc
       run: |
         pip install git+https://github.com/mehtamohit013/pkgmt.git@doc
-        python -m pkgmt.modified -b origin/pkgmt_modi -e doc
+        python -m pkgmt.fail_if_modified -b origin/pkgmt_modi -e doc
       continue-on-error: true
     
     - name: Only Doc Testing
