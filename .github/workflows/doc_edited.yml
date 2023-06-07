@@ -25,6 +25,14 @@ jobs:
         fetch-depth: 1000
     
 
+    - name: Git local branch
+      run: |
+        git branch -vv
+  
+    - name: Git remote branch
+      run: |
+        git branch -vv -r
+
 
     - name: Set up Python
       uses: actions/setup-python@v2
