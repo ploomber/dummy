@@ -29,6 +29,7 @@ jobs:
     - name: Check Doc Modified
       id: check_doc_modified
       run: |
+        echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
         if [ "$GITHUB_EVENT_NAME" == "pull_request" ]
         then
           echo "Pull request"
