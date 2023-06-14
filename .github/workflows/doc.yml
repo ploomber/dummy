@@ -26,6 +26,17 @@ jobs:
     - name: git local branches
       run: git branch
       
+    - name: Check Doc Modified
+      id: check_doc_modified
+      run: |
+        if [ "$GITHUB_EVENT_NAME" == "pull_request" ]
+        then
+          echo "Pull request"
+        else
+          echo "This is not a pull request event"
+          exit 1
+        fi
+      continue-on-error: true
 
     # TODO: set BRANCH_NAME depending on which is the default branch
     - name: Check doc
