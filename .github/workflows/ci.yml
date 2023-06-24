@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
       - 'dev/**'
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
@@ -11,7 +11,7 @@ on:
 
 
 jobs:
-  check-changelog:
+  check:
     runs-on: ubuntu-latest
     outputs:
       check_doc_modified: ${{steps.check_doc_modified.outcome}}
@@ -44,7 +44,7 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]
           then
             echo "Pull request, running check_doc"
-            python -m pkgmt.fail_if_modified -b origin/master -e doc -e CHANGELOG.md
+            python -m pkgmt.fail_if_modified -b origin/main -e doc -e CHANGELOG.md
           else
             echo "This is not a pull request event"
             echo "Running all tests"
@@ -66,14 +66,14 @@ jobs:
               echo "PR does not contain no-changelog label";
               echo "Checking if changelog is modified";
               echo "If this test fails, please add the no-changelog label to the PR or modify the changelog"
-              python -m pkgmt.fail_if_not_modified -b origin/master -i CHANGELOG.md
+              python -m pkgmt.fail_if_not_modified -b origin/main -i CHANGELOG.md
             fi
           else
             exit 0
           fi
 
 
-  check:
+  check-pkgmt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -92,8 +92,8 @@ jobs:
           pkgmt check
 
   test:
-    needs: [check-changelog]
-    if: needs.preliminary.outputs.check_doc_modified == 'failure'
+    needs: [check]
+    if: needs.check.outputs.check_doc_modified == 'failure'
     strategy:
       matrix:
         python-version: ['3.11']
