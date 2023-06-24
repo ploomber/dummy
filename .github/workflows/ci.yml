@@ -38,7 +38,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pkgmt
 
-      - name: Check Doc Modified
+      - name: Check doc/ Modified
         id: check_doc_modified
         run: |
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]
@@ -52,7 +52,7 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: Check Changelog Modified
+      - name: Check CHANGELOG.md Modified
         env:
           labels_JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
         id: check_changelog_modified
@@ -65,7 +65,7 @@ jobs:
             else
               echo "PR does not contain no-changelog label";
               echo "Checking if changelog is modified";
-              echo "If this test fails, please add the no-changelog label to the PR or modify the changelog"
+              echo "If this test fails add the no-changelog label to the PR or modify the changelog"
               python -m pkgmt.fail_if_not_modified -b origin/main -i CHANGELOG.md
             fi
           else
