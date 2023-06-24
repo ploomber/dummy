@@ -43,7 +43,7 @@ jobs:
         run: |
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]
           then
-            echo "Pull request, running check_doc"
+            echo "Pull request event, checking if tests need to run..."
             python -m pkgmt.fail_if_modified -b origin/main -e doc -e CHANGELOG.md
           else
             echo "This is not a pull request event"
