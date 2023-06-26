@@ -14,7 +14,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          console.log("GitHub Context:", JSON.stringify(github.context, null, 2)); // For debugging
+          
           
           var PR_HEAD_REF = github.context.payload.pull_request.head.ref;
           var PR_HEAD_USERREPO = github.context.payload.pull_request.head.repo.full_name;
