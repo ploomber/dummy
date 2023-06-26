@@ -13,13 +13,13 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          console.log("GitHub Context:", JSON.stringify(github, null, 2)); // For debugging
+          console.log("Context:", JSON.stringify(context, null, 2)); // For debugging
           
-          var PR_HEAD_REF = github.event.pull_request.head.ref;
-          var PR_HEAD_USERREPO = github.event.pull_request.head.repo.full_name;
-          var issue_number = github.event.pull_request.number;
-          var owner = github.event.pull_request.base.repo.owner.login;
-          var repo = github.event.pull_request.base.repo.name;
+          var PR_HEAD_REF = context.payload.pull_request.head.ref;
+          var PR_HEAD_USERREPO = context.payload.pull_request.head.repo.full_name;
+          var issue_number = context.payload.pull_request.number;
+          var owner = context.payload.pull_request.base.repo.owner.login;
+          var repo = context.payload.pull_request.base.repo.name;
 
           console.log(`Posting comment to ${owner}/${repo} issue #${issue_number}`); // For debugging
           
