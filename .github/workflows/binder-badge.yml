@@ -1,6 +1,6 @@
 name: Binder Badge
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize]
 jobs:
   binder:
@@ -13,7 +13,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          console.log("GitHub Context:", JSON.stringify(github, null, 2)); # For debugging
+          console.log("GitHub Context:", JSON.stringify(github, null, 2)); // For debugging
           
           var PR_HEAD_REF = github.event.pull_request.head.ref;
           var PR_HEAD_USERREPO = github.event.pull_request.head.repo.full_name;
@@ -21,7 +21,7 @@ jobs:
           var owner = github.event.pull_request.base.repo.owner.login;
           var repo = github.event.pull_request.base.repo.name;
 
-          console.log(`Posting comment to ${owner}/${repo} issue #${issue_number}`); # For debugging
+          console.log(`Posting comment to ${owner}/${repo} issue #${issue_number}`); // For debugging
           
           github.rest.issues.createComment({
             issue_number: issue_number,
