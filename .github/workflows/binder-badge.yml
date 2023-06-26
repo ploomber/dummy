@@ -21,7 +21,6 @@ jobs:
           var owner = context.payload.pull_request.base.repo.owner.login;
           var repo = context.payload.pull_request.base.repo.name;
 
-          console.log(`Posting comment to ${owner}/${repo} issue #${issue_number}`); // For debugging
           
           github.rest.issues.createComment({
             issue_number: issue_number,
