@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.39dev
+## 0.1.39 (2023-07-05)
 
 testbinber 2
 
