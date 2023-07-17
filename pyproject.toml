@@ -1,4 +1,4 @@
 [tool.pkgmt]
 github = "ploomber/dummy"
-version = {some_key=val }
+version = {some_key=true}
 
