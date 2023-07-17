@@ -1,4 +1,4 @@
 [tool.pkgmt]
 github = "ploomber/dummy"
-version = {version_file="src/ploomber_two/__init__.py"}
+version = {version_file="src/ploomber_two/__init__.py", tag=0}
 
