@@ -17,6 +17,6 @@ dependencies:
     - memory-profiler
     - pyarrow
     # required to open .md files as nbs
-    - jupytext
+    # - jupytext
     # jupysql
     # - git+https://github.com/ploomber/jupysql
