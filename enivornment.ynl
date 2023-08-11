@@ -18,3 +18,5 @@ dependencies:
     - pyarrow
     # required to open .md files as nbs
     - jupytext
+    # jupysql
+    - git+https://github.com/ploomber/jupysql
