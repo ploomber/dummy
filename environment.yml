@@ -9,6 +9,7 @@ dependencies:
   - matplotlib
   - pandas
   - pip
+  # jupysql-plugin doesn't work with jupyterlab 4
   - jupyterlab<4
   - pip:
     # duckdb example
@@ -21,3 +22,4 @@ dependencies:
     - jupytext<1.15
     # jupysql
     - git+https://github.com/ploomber/jupysql
+    - jupysql-plugin
