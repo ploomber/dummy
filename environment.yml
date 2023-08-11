@@ -19,4 +19,4 @@ dependencies:
     # required to open .md files as nbs
     - jupytext
     # jupysql
-    - git+https://github.com/ploomber/jupysql
+    # - git+https://github.com/ploomber/jupysql
