@@ -15,4 +15,4 @@ dependencies:
     # duckdb example
     - duckdb
     - duckdb-engine
-    - jupytext<1.15
+    - jupytext<1.14.7
