@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 0.1.71dev
+- [Feature] Adding a github action to tag branch.
 
 ## 0.1.70 (2023-07-28)
 
