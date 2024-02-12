@@ -36,7 +36,7 @@ jobs:
       - name: Install pkgmt
         run: |
           python -m pip install --upgrade pip
-          pip install 'pkgmt[check]'
+          pip install git+https://github.com/neelasha23/pkgmt.git@issue76
 
       - name: Lint
         run: |
