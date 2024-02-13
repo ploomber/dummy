@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.71dev
+## 0.1.70dev
 
 * [Feature] Fixes #1
 * [Fix] Fixes some issues (#199)
