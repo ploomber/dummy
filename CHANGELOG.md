@@ -4,7 +4,6 @@
 
 * [Feature] Fixes #1
 * [Feature] Fixes #2 (#199)
-* 
 
 
 
