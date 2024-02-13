@@ -80,6 +80,16 @@ jobs:
           else
             exit 0
           fi
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/1.0.10',
+              sha: context.sha
+            })
 
   test:
     needs: [check]
