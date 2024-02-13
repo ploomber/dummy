@@ -75,7 +75,7 @@ jobs:
               echo "PR does not contain no-changelog label";
               echo "Checking if changelog is modified";
               echo "If this test fails add the no-changelog label to the PR or modify the changelog"
-              python -m pkgmt.fail_if_invalid_changelog -b origin/main -i CHANGELOG.md --debug
+              python -m pkgmt.fail_if_invalid_changelog -b origin/main --debug
             fi
           else
             exit 0
