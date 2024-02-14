@@ -5,9 +5,6 @@
 * [Feature] Fixes #1
 * [Fix] This should pass
 
-## 0.1.70 (2023-07-28)
-* [Fix] now this shouldn't pass
-
 ## 0.1.69 (2023-07-27)
 
 ## 0.1.68 (2023-07-27)
