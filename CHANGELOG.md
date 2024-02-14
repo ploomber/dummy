@@ -2,7 +2,7 @@
 
 ## 0.1.71dev
 
-* [Feature] Fixes #1
+* [Feature] removed last entry and added this
 
 ## 0.1.70 (2023-07-28)
 
