@@ -3,6 +3,7 @@
 ## 0.1.71dev
 
 * [Feature] Fixes #1
+* [Feature] Fixes 2
 
 ## 0.1.70 (2023-07-28)
 
