@@ -2,6 +2,7 @@
 
 ## 0.1.71dev
 
+* [Feature] Fixes #1
 * [Fix] Added file2
 
 ## 0.1.70 (2023-07-28)
