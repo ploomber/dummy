@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## 0.1.70dev
+## 0.1.71dev
 
-* [Fix] some fix
+* [Fix] Added file2
+
+## 0.1.70 (2023-07-28)
 
 ## 0.1.69 (2023-07-27)
 
